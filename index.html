@@ -1,7 +1,7 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <title>Giao diện thiệp cưới Nobel - Gói VIP</title>
+    <title>Công Thành - Tú Hà</title>
     <meta http-equiv="Cache-Control" content="no-cache" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Expires" content="-1" />
@@ -11,7 +11,7 @@
     />
     <meta
       name="description"
-      content="Sử dụng Full tất cả các tính, tùy chỉnh không giới hạn và sử dụng trọn đời"
+      content="Lễ cưới Công Thành - Tú Hà 07 - 12 - 2025"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script type="text/javascript">
@@ -6997,7 +6997,7 @@
           font-size: 35px;
         }
         #HEADLINE4 {
-          left: 177px;
+          left: 115px;
         }
         #HEADLINE4 > .ladi-headline {
           font-size: 35px;
@@ -8690,6 +8690,11 @@
         pointer-events: none;
       }
 
+
+
+
+
+
       /* Hiệu ứng rung, xoay và phát sáng đỏ đậm */
       .vibrating {
         animation: pulse 1.2s infinite, rotate 4s linear infinite,
@@ -9015,10 +9020,10 @@
           <div id="GROUP1" class="ladi-element">
             <div class="ladi-group">
               <div id="HEADLINE3" class="ladi-element ladi-animation">
-                <h3 class="ladi-headline ladi-transition">Xuân Thịnh<br /></h3>
+                <h3 class="ladi-headline ladi-transition">Công Thành<br /></h3>
               </div>
               <div id="HEADLINE4" class="ladi-element ladi-animation">
-                <h3 class="ladi-headline ladi-transition">Diễm Hằng<br /></h3>
+                <h3 class="ladi-headline ladi-transition">Hà Tú<br /></h3>
               </div>
               <div id="HEADLINE5" class="ladi-element ladi-animation">
                 <h3 class="ladi-headline ladi-transition">&amp;<br /></h3>
@@ -11152,10 +11157,10 @@
               </div>
               <div
                 id="FORM4"
-                data-config-id="66d360f3b4577100128b7bb4"
+      
                 class="ladi-element"
               >
-                <form autocomplete="off" method="post" class="ladi-form">
+                <form autocomplete="off"  > 
                   <div id="BUTTON21" class="ladi-element">
                     <div class="ladi-button ladi-transition">
                       <div class="ladi-button-background ladi-lazyload"></div>
@@ -11489,7 +11494,6 @@
                       class="ladi-form-control"
                       type="tel"
                       placeholder="Số điện thoại"
-                      pattern="(\+84|0)(9|8|7|5|3)[0-9]{8}"
                       value
                     />
                   </div>
@@ -11654,7 +11658,7 @@
           </div>
           <div id="PARAGRAPH87" class="ladi-element">
             <div class="ladi-paragraph ladi-transition">
-              Xuân Thịnh &amp; Diễm Hằng
+              Công Thành &amp; Hà Tú
             </div>
           </div>
           <a
@@ -11669,7 +11673,7 @@
               </div>
               <div id="PARAGRAPH95" class="ladi-element">
                 <div class="ladi-paragraph">
-                  Happy Wedding - Xuân Thịnh &amp; Diễm Hằng
+                  Happy Wedding - Công Thành &amp; Hà Tú
                 </div>
               </div>
             </div></a
@@ -15327,4 +15331,129 @@
       </style>
     </div>
   </body>
+<script defer>
+  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbycLG8oT5j4yXFXJktZpRBzrorYWCum1dyyAzPLBsNLENzAe-hYWmILkzFtZ9X754aF9g/exec";
+
+  // Helper: lấy form bên trong 1 wrapper id, không đụng class chung
+  function getForm(wrapperId) {
+    const wrap = document.getElementById(wrapperId);
+    if (!wrap) return null;
+    return wrap.querySelector('form');
+  }
+
+  setTimeout(()=> {
+    async function postJson(payload) {
+      return fetch(WEB_APP_URL, {
+        redirect: "follow",
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload)
+      });
+    }
+
+    (function wireWishes() {
+      const form = getForm('FORM4');
+      console.log("12312312");
+      console.log(form);
+      if (!form) return;
+
+      const btn = form.closest('#FORM4').querySelector('#BUTTON21');
+      if (btn) btn.addEventListener('click', () => form.requestSubmit());
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Lấy đúng field theo name trong form bạn đã gửi trước đó
+        const name = form.querySelector('[name="name"]')?.value?.trim() || '';
+        const rawMsg = form.querySelector('[name="message"]')?.value?.trim() || '';
+        const relation = form.querySelector('[name="FORM_ITEM"]')?.value || '';
+        const suggested = form.querySelector('[name="form_item5"]')?.value || '';
+
+        const message = rawMsg || (suggested && suggested !== 'Lời chúc gợi ý sẵn' ? suggested : '');
+
+        const payload = {
+          formId: 'WISHES',
+          fields: {
+            name,
+            message,
+            relation,
+            suggestedMessage: suggested
+          },
+          meta: {
+            pageUrl: location.href,
+            userAgent: navigator.userAgent
+          }
+        };
+
+        try {
+            document.getElementById('POPUP16').display = 'block'
+          await postJson(payload);
+          alert('Đã gửi lời chúc! 💖');
+          form.reset();
+        } catch (err) {
+          console.error(err);
+          alert('Gửi không thành công, vui lòng thử lại.');
+        }
+      });
+    })();
+
+    // ---------- Form 2: RSVP (FORM8) ----------
+    (function wireRSVP() {
+      const form = getForm('FORM8'); // wrapper id bạn đã cung cấp
+      console.log("12312312");
+      console.log(form);
+      if (!form) return;
+
+      // Nếu nút submit là div (BUTTON28)
+      const btn = form.closest('#FORM8').querySelector('#BUTTON28');
+      if (btn) btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopImmediatePropagation()
+        e.stopPropagation()
+        form.requestSubmit()
+      } );
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const name = form.querySelector('[name="name"]')?.value?.trim() || '';
+        const phone = form.querySelector('[name="phone"]')?.value?.trim() || '';
+        const message = form.querySelector('[name="message"]')?.value?.trim() || '';
+        const attendance = form.querySelector('input[name="form_item"]:checked')?.value || '';
+        const locationSel = form.querySelector('[name="form_item14"]')?.value || '';
+        const pax = form.querySelector('[name="form_item15"]')?.value || '';
+
+        const payload = {
+          formId: 'RSVP',
+          fields: {
+            name,
+            phone,
+            message,
+            attendance,         // "Có, tôi sẽ đến" | "Xin lỗi, tôi bận mất rồi"
+            location: locationSel, // "Lễ Cưới nhà Trai" | ...
+            pax                  // "1 Người" | "2 Người" | ...
+          },
+          meta: {
+            pageUrl: location.href,
+            userAgent: navigator.userAgent
+          }
+        };
+
+        try {
+          document.getElementById('POPUP16').display = 'block'
+          await postJson(payload);
+          alert('Đã xác nhận, cảm ơn bạn! 🎉');
+          form.reset();
+        } catch (err) {
+          console.error(err);
+          alert('Gửi không thành công, vui lòng thử lại.');
+        }
+      });
+    })();
+  }, 3000)
+  // Helper: gửi JSON kiểu "text/plain" như bạn đang dùng
+  
+</script>
+
+
 </html>
